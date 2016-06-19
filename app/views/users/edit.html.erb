@@ -8,6 +8,19 @@
   <hr>
 </div>
 
+<% if @user.errors.present? %>
+    <div class="alert alert-danger">
+      <%= alert %>
+      <ul>
+        <% @user.errors.full_messages.each do |full_message| %>
+          <li>
+            <%= full_message %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  <% end %>
+
 <%= form_for (@user), method: :patch  do  |f| %>
 
 <h3>email</h3>

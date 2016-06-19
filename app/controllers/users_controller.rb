@@ -7,6 +7,7 @@ class UsersController < ApplicationController
       flash[:success] = "Updated your profile !!"
       redirect_to @user
     else
+      flash.now[:alert] = "メッセージの保存に失敗しました。"
       render 'edit'
     end
   end
