@@ -1,4 +1,5 @@
 class UsersController < ApplicationController
+  before_action :session_check, only: [:edit, :update]
   
   def update
     @user = User.find(params[:id])
@@ -36,12 +37,23 @@ class UsersController < ApplicationController
   end
 
 
+    
+  end
+
   private
   
+  
+  def session_check
+    @user = User.find(params[:id])
+    if current_user != @user
+      redirect_to login_path
+    end
+  end
+
+
   def user_params
     params.require(:user).permit(:name, :email, :password, 
                                                 :password_confrimation, :biography, :location)
   end
   
   
-end

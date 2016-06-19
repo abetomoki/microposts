@@ -12,4 +12,14 @@ module SessionsHelper
     def store_location
         session[:forwarding_url] = request.url if request.get?
     end
+    
+    
+    # def session_check
+    #     @current_user = User.find_by(id: session[:user_id])
+    #     if @user &&  
+    #   else
+           
+    # end
+# end
 end
+

@@ -1,18 +1,21 @@
-
-<div class="media">
-  <h3><%= @user.name %></h3>
-  <%= gravatar_for @user %>
-  <hr>
-  <div class="media-body">
-      <h4 class="media-heading">Mail</h4>
-      <p><%= @user.email %></p>
-      <h4 class="media-heading">Bio</h4>
-      <p><%= @user.biography %></p>
-      <h4 class="media-heading">Location</h4>
-      <p><%= @user.location %></p>
-      <h4><%= link_to "edit profile", edit_user_path %><h4>
+<div class="row">
+  <div class="col-md-6 col-md-offset-3">
+    <div class="media">
+      <h3><%= @user.name %></h3>
+      <%= gravatar_for @user %>
+      <hr>
+      <div class="media-body">
+          <h4 class="media-heading">Mail</h4>
+          <p><%= @user.email %></p>
+          <h4 class="media-heading">Bio</h4>
+          <p><%= @user.biography %></p>
+          <h4 class="media-heading">Location</h4>
+          <p><%= @user.location %></p>
+      </div>
+    </div>
   </div>
 </div>
+
     
 
 
