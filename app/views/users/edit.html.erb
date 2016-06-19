@@ -1,0 +1,25 @@
+<body>
+
+<h1>Edit Profile</h1>
+
+<div class="media">
+  <h3><%= @user.name %></h3>
+  <%= gravatar_for @user %>
+  <hr>
+</div>
+
+<%= form_for (@user), method: :patch  do  |f| %>
+
+<h3>email</h3>
+<%= f.text_field :email %><br>
+
+<h3>biography</h3>
+<%= f.text_area :biography %><br>
+
+<h3>location</h3>
+<%= f.text_area :location %><br>
+
+<h4><%= f.submit %></h4>
+<% end %>
+<h4><%= link_to "my page", user_path %></h4>
+</body>
