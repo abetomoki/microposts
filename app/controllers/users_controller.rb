@@ -1,6 +1,11 @@
 class UsersController < ApplicationController
   before_action :session_check, only: [:edit, :update]
   
+  def show
+    @user = User.find(params[:id])
+    @microposts = @user.microposts.order(created_at: :desc)
+  end
+  
   def update
     @user = User.find(params[:id])
     
@@ -15,10 +20,6 @@ class UsersController < ApplicationController
   
   def edit
     @user = User.find(params[:id])
-  end
-  
-  def show 
-   @user = User.find(params[:id])
   end
   
   def new
