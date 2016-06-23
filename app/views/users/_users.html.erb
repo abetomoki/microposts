@@ -1,0 +1,19 @@
+<div class="panel panel-primary">
+    <div class="panel-heading">
+      <h5 class="panel-title"></h5>
+    </div>
+  <div class="panel-body">
+    <ul style="list-style:none">
+      <% users.each do |user| %>
+        <li style="margin-bottom:20px" class="clearfix">
+          <%= gravatar_for(user, {size: 40}) %>
+          <%= user.name %>
+        </li>
+        <hr>
+      <% end %>
+    </ul>
+  </div>
+  <div class="panel-footer">
+    <%= link_to "my page", user_path %>
+  </div>
+</div>

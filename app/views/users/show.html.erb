@@ -1,10 +1,26 @@
 <div class="row">
   <aside class="col-md-4">
     <section class="user_info">
-      <h1>
+      <h1 class="clearfix">
         <%= gravatar_for @user %>
         <%= @user.name %>
       </h1>
+      <div>
+        <span>biography: </span><span><%= @user.biography %></span>
+      </div>
+      <div>
+        <span>location: </span><span><%= @user.location %></span>
+      </div>
+      <ul>
+        <li>
+            <%= link_to "フォロー", :controller => "users", :action => "followings" %>
+            (<%= @user.following_count %>)
+        </li>
+        <li>
+            <%= link_to "フォロワー", :controller => "users", :action => "followers" %>
+            (<%= @user.follower_count %>)
+        </li>
+      </ul>
     </section>
   </aside>
   
@@ -18,3 +34,5 @@
     <% end %>
   </div>
 </div>
+
+

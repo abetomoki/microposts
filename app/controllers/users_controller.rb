@@ -1,9 +1,24 @@
 class UsersController < ApplicationController
   before_action :session_check, only: [:edit, :update]
   
+  def followings
+       # @followings_user = followings_user.oreder(created_at: :desc)
+      @user = User.find(params[:id])
+      @user_followings = @user.following_users
+  end
+  
+  def followers
+        @user = User.find(params[:id])
+        @user_followers = @user.follower_users
+  end
+  
   def show
     @user = User.find(params[:id])
     @microposts = @user.microposts.order(created_at: :desc)
+    # @user_followings = @user.following_users
+    # @user_followers = @user.follower_users
+    # @biography = @user.biography
+    # @location = @user.location
   end
   
   def update
