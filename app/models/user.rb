@@ -58,4 +58,8 @@ class User < ActiveRecord::Base
       def follower_count
             follower_users.count
       end
+      
+      def feed_items
+        Micropost.where(user_id: following_user_ids + [self.id])
+      end
 end
