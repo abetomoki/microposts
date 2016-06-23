@@ -21,7 +21,11 @@ class User < ActiveRecord::Base
                                           foreign_key: "followed_id",
                                           dependent:   :destroy
       has_many :follower_users,  through: :follower_relationships, source: :follower
-       
+      
+      #リツイート機能
+      has_many :retweet_relationships
+      
+
       
       def follow(other_user)
             following_relationships.find_or_create_by(followed_id: other_user.id)
