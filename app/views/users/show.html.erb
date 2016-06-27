@@ -20,6 +20,11 @@
             <%= link_to "フォロワー", :controller => "users", :action => "followers" %>
             (<%= @user.follower_count %>)
         </li>
+        <li>
+            <%= link_to "お気に入り", :controller => "users", :action => "favorites" %>
+            <!--後でなおす。-->
+            (<%= @user.follower_count %>)
+        </li>
       </ul>
     </section>
   </aside>

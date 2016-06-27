@@ -8,5 +8,24 @@
         <%= link_to "delete", micropost, method: :delete,
                                           data: { confirm: "You sure?" } %>
         <% end %>
+        
+      <!--登録しているか確認-->
+       <% if current_user.favo?(micropost) %>
+      
+      <!--登録解除ボタン-->
+          <%= form_for(current_user.favorite_relationships.find_by(micropost_id: micropost.id),html: { method: :delete }) do  |f| %>
+          <%= f.submit "お気に入りから外す", class: "btn" %>
+       <% end %>
+        
+        <% else %>
+    <!--登録するボタン-->
+        <%= form_for(current_user.favorite_relationships.build) do |f| %>
+          <div><%= hidden_field_tag :micropost_id, micropost.id %></div>
+          <%= f.submit "お気に入り", class: "btn btn-danger" %>
+        <% end %>
+     
+    <% end %>
     </span>
 </li>
+
+

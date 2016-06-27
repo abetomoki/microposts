@@ -10,7 +10,10 @@ Rails.application.routes.draw do
   
 
   resources :users
+  # get    'favorite/:id', to: 'users#favorite'
   resources :sessions, only: [:new, :create, :destroy]
   resources :microposts
   resources :relationships, only: [:create, :destroy]
+  resources :favorite_relationships, only: [:create, :destroy]
+  get    'favorites/:id', to: 'users#favorites'
 end

@@ -22,9 +22,6 @@ class User < ActiveRecord::Base
                                           dependent:   :destroy
       has_many :follower_users,  through: :follower_relationships, source: :follower
       
-      #リツイート機能
-      has_many :retweet_relationships
-      
 
       
       def follow(other_user)
@@ -40,21 +37,7 @@ class User < ActiveRecord::Base
             following_users.include?(other_user)
       end
      
-      def followings_user
-            following_relationships.find
-            
-         #参考２つ
-         #1 @user = current_user.following_relationships.find(params[:id]).followed
-         #2 @user = User.find(params[:id])
-         #  @microposts = @user.microposts.order(created_at: :desc)
-      
-         #コード
-          #current_userがフォローしているユーザーのidを取得。
-           #current_user.followings_relationships.find(params[:id]).followed
-           #following_relationship = following_relationships.find_by(followed_id: other_user.id)
-           #フォローしている人の集まりを取得。
-      end
-  
+
       def following_count
             following_users.count
       end
@@ -66,4 +49,32 @@ class User < ActiveRecord::Base
       def feed_items
         Micropost.where(user_id: following_user_ids + [self.id])
       end
+      
+        
+        
+        
+     has_many :favorite_relationships,    class_name: "FavoriteRelationship",
+                                         foreign_key: "user_id",
+                                           dependent: :destroy
+                                          
+     has_many :favorite_microposts, through: :favorite_relationships, source: :micropost
+     
+     
+      # 投稿をお気に入り登録する
+  def favo(micropost)
+      favorite_relationships.find_or_create_by(micropost_id: micropost.id)
+  end
+
+  # お気に入りしている投稿をお気に入りから外す
+  def unfavo(micropost)
+      favorite_relationship = favorite_relationships.find_by(micropost_id: micropost.id)
+      favorite_relationship.destroy if favorite_relationship
+  end
+
+  # ある投稿をお気に入りしているかどうか？
+  def favo?(micropost)
+      favorite_microposts.include?(micropost)
+  end
 end
+
+      

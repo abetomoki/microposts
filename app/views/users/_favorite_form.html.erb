@@ -1,0 +1,6 @@
+<% if current_user.favo?(@user) %>
+    <%= render 'favorite' %>
+<% else %>
+    <%= render 'unfavorite' %>
+<% end %>
+
