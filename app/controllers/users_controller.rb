@@ -46,7 +46,7 @@ class UsersController < ApplicationController
  
   def create
     @user = User.new(user_params)
-    @micropost = Micropost.new(micropost_params)
+    # @micropost = Micropost.new(micropost_params)
     if @user.save
       flash[:success] = "Welcome to the Sample App!"
       redirect_to @user
